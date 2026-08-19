@@ -1,6 +1,6 @@
 id = "net.discworld.beings-discworld-xp-timers"
 name = "Being's Discworld XP Timers"
-version = "1.0.0"
+version = "1.0.2"
 language = "lua"
 entry = "src/main.lua"
 mallard_api_version = "1.0"
@@ -9,9 +9,7 @@ authors = ["duzchip"]
 license = "MIT"
 
 [worlds]
-match = [
-  "discworld.starturtle.net:23",
-]
+match = ["discworld.starturtle.net:*"]
 
 [permissions]
 sends = true
