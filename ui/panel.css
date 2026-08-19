@@ -1,162 +1,205 @@
+/* Plugin design tokens, derived from Mallard host theme tokens (pushed into
+ * the iframe's :root inline style via `set-theme`). Each `var(--host, hex)`
+ * chain resolves to the host's themed value when present and falls back to
+ * the original dark-theme hex otherwise — covering first paint (before the
+ * host's push arrives) and standalone-browser preview. `--bg`/`--fg`/`--border`
+ * are themed by the host overriding these stylesheet defaults via inline
+ * style, so they stay as raw hex here. */
+:root {
+  --bg:            #1a1a1a;
+  --fg:            #ddd;
+  --border:        #333;
+  --muted:         var(--fg-muted, #777);
+  --header-bg:     var(--bg-elevated, #222);
+  --section-bg:    var(--bg-elevated, #202020);
+  --btn-bg:        var(--bg-elevated, #222);
+  --btn-hover:     color-mix(in srgb, var(--fg, #ddd) 8%, transparent);
+  --btn-border-hover: color-mix(in srgb, var(--fg, #ddd) 25%, transparent);
+
+  --timer-ok:      var(--ansi-3, #facc15);
+  --timer-bad:     var(--ansi-1, #f87171);
+  --timer-good:    var(--ansi-2, #4ade80);
+  --timer-muted:   var(--fg-muted, #555);
+
+  --xp-good:       var(--ansi-2, #4ade80);
+  --xp-ok:         var(--ansi-3, #facc15);
+  --xp-bad:        var(--ansi-1, #f87171);
+
+  /* Group badge chip — tinted neutral, same visual language as vitals shields */
+  --badge-bg:      color-mix(in srgb, var(--fg, #ddd) 10%, transparent);
+  --badge-border:  color-mix(in srgb, var(--fg, #ddd) 25%, transparent);
+  --badge-fg:      var(--fg-muted, #777);
+}
+
 html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--mallard-bg, #1a1a2e);
-    color: var(--mallard-fg, #e0e0e0);
-    font: var(--mallard-font-size, 13px) / var(--mallard-line-height, 1.4) var(--mallard-font-sans, sans-serif);
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 12px/1.35 ui-monospace, monospace;
+  overflow-x: hidden;
 }
 
 .panel {
-    padding: var(--mallard-space-2, 8px);
-    display: flex;
-    flex-direction: column;
-    gap: var(--mallard-space-2, 8px);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+/* ── Sections ─────────────────────────────────────── */
+
 .section {
-    background: var(--mallard-bg-elevated, #242440);
-    border: 1px solid var(--mallard-border, #3a3a5c);
-    border-radius: var(--mallard-radius-md, 6px);
-    padding: var(--mallard-space-2, 8px);
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
 }
 
 .section-header {
-    font-weight: bold;
-    font-size: var(--mallard-font-size-sm, 11px);
-    color: var(--mallard-fg-muted, #9999aa);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--mallard-space-1, 4px);
-    padding-bottom: var(--mallard-space-1, 4px);
-    border-bottom: 1px solid var(--mallard-border, #3a3a5c);
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
 }
 
+/* ── Timer list ───────────────────────────────────── */
+
 .timer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .timer-entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px var(--mallard-space-1, 4px);
-    border-radius: var(--mallard-radius-sm, 3px);
-    font-family: var(--mallard-font-mono, monospace);
-    font-size: var(--mallard-font-size-sm, 11px);
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.1s ease;
 }
 
 .timer-entry:hover {
-    background: var(--mallard-bg-hover, rgba(255,255,255,0.05));
+  background: var(--btn-hover);
 }
 
 .timer-name {
-    color: var(--mallard-fg, #e0e0e0);
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 8px;
 }
 
 .timer-value {
-    font-weight: bold;
-    color: var(--mallard-fg, #e0e0e0);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .timer-group-badge {
-    font-size: 0.75em;
-    color: var(--mallard-fg-subtle, #666678);
-    margin-left: var(--mallard-space-1, 4px);
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--badge-fg);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-left: 4px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 1.4;
 }
 
-.timer-ok .timer-value {
-    color: var(--mallard-ansi-yellow, #e0c84a);
-}
+.timer-ok .timer-value    { color: var(--timer-ok); }
+.timer-bad .timer-value   { color: var(--timer-bad); }
+.timer-muted .timer-value { color: var(--timer-muted); }
+.timer-good .timer-value  { color: var(--timer-good); }
 
-.timer-bad .timer-value {
-    color: var(--mallard-ansi-red, #e05555);
-}
-
-.timer-muted .timer-value {
-    color: var(--mallard-fg-subtle, #666678);
-}
-
-.timer-good .timer-value {
-    color: var(--mallard-ansi-green, #55c855);
-}
+/* ── XP monitor ───────────────────────────────────── */
 
 .xp-row {
-    display: flex;
-    align-items: baseline;
-    gap: var(--mallard-space-1, 4px);
-    font-family: var(--mallard-font-mono, monospace);
-    font-size: var(--mallard-font-size-sm, 11px);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 11px;
 }
 
 .xp-row.xp-sub {
-    margin-bottom: var(--mallard-space-1, 4px);
+  margin-bottom: 4px;
 }
 
 .xp-label {
-    color: var(--mallard-fg-muted, #9999aa);
-    min-width: 52px;
+  color: var(--muted);
+  min-width: 52px;
 }
 
 .xp-value {
-    color: var(--mallard-fg, #e0e0e0);
-    font-weight: bold;
+  color: var(--fg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .xp-rate {
-    margin-left: auto;
-    font-weight: bold;
-    color: var(--mallard-fg, #e0e0e0);
+  margin-left: auto;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
 }
 
-.xp-rate.good {
-    color: var(--mallard-ansi-green, #55c855);
-}
-
-.xp-rate.ok {
-    color: var(--mallard-ansi-yellow, #e0c84a);
-}
-
-.xp-rate.bad {
-    color: var(--mallard-ansi-red, #e05555);
-}
+.xp-rate.good { color: var(--xp-good); }
+.xp-rate.ok   { color: var(--xp-ok); }
+.xp-rate.bad  { color: var(--xp-bad); }
 
 .xp-time {
-    color: var(--mallard-fg-subtle, #666678);
-    font-size: 0.9em;
+  color: var(--muted);
+  font-size: 0.9em;
+  font-variant-numeric: tabular-nums;
 }
 
+/* ── Buttons ──────────────────────────────────────── */
+
 .button-row {
-    display: flex;
-    gap: var(--mallard-space-1, 4px);
-    margin-top: var(--mallard-space-1, 4px);
-    flex-wrap: wrap;
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
 }
 
 .btn {
-    background: var(--mallard-bg-input, #2a2a44);
-    color: var(--mallard-fg, #e0e0e0);
-    border: 1px solid var(--mallard-border, #3a3a5c);
-    border-radius: var(--mallard-radius-sm, 3px);
-    padding: var(--mallard-space-1, 4px) var(--mallard-space-2, 8px);
-    font: inherit;
-    font-size: var(--mallard-font-size-sm, 11px);
-    cursor: pointer;
-    white-space: nowrap;
+  appearance: none;
+  background: var(--btn-bg);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 8px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s ease, border-color 0.1s ease;
 }
 
 .btn:hover {
-    background: var(--mallard-bg-hover, rgba(255,255,255,0.1));
-    border-color: var(--mallard-border-strong, #5a5a7c);
+  background: var(--btn-hover);
+  border-color: var(--btn-border-hover);
 }
 
 .btn:active {
-    filter: brightness(0.95);
+  filter: brightness(0.92);
+  transform: translateY(1px);
 }
 
 .bottom-buttons {
-    margin-top: 0;
+  margin-top: 0;
 }
