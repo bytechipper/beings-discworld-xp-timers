@@ -1,0 +1,66 @@
+local Config = {}
+
+Config.kill_timers = {
+    { pattern = "Delbert",                    name = "delbert",    group = false, respawn = 40 },
+    { pattern = "the Triad boss",             name = "medina boss", group = false, respawn = 40 },
+    { pattern = "the bandit leader",          name = "bandits",    group = false, respawn = 40 },
+    { pattern = "Hlakket the Bartender",      name = "hlakket",    group = false, respawn = 40 },
+    { pattern = "the Zoon Liar",              name = "zoon liar",  group = false, respawn = 40 },
+    { pattern = "Slim Stevie",                name = "rogues",     group = false, respawn = 40 },
+    { pattern = "the .* grflx worker",        name = "grflx",      group = false, respawn = 40 },
+    { pattern = "the .* student",             name = "dojo",       group = false, respawn = 40 },
+    { pattern = "the ceremonial guard",       name = "cguards",    group = false, respawn = 40 },
+    { pattern = "the smuggler captain",       name = "smug cap",   group = false, respawn = 40 },
+    { pattern = "the giant leader",           name = "giants",     group = false, respawn = 40 },
+    { pattern = "the .* rujona",              name = "snail",      group = true,  respawn = 40 },
+    { pattern = "the .* nitsuni",             name = "snail",      group = true,  respawn = 40 },
+    { pattern = "the Ome outlaw",             name = "snail",      group = true,  respawn = 40 },
+    { pattern = "the .* lion",                name = "shaker",     group = false, respawn = 40 },
+    { pattern = "the .* crocodile",           name = "offler",     group = false, respawn = 40 },
+    { pattern = "Louis Accardo",              name = "stables",    group = true,  respawn = 40 },
+    { pattern = "Samuel Casso",               name = "stables",    group = true,  respawn = 40 },
+    { pattern = "Enrico Persuica",            name = "stables",    group = true,  respawn = 40 },
+    { pattern = "Joe Corrola",                name = "stables",    group = true,  respawn = 40 },
+    { pattern = "Marlon Gumboni",             name = "casino",     group = true,  respawn = 40 },
+    { pattern = "Frankie Harvard",            name = "casino",     group = true,  respawn = 40 },
+    { pattern = "Geraldo Ciaco",              name = "casino",     group = true,  respawn = 40 },
+    { pattern = "Charles Marchella",          name = "casino",     group = true,  respawn = 40 },
+    { pattern = "the .* hermit",              name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the .* patroller",           name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the strict captain",         name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the serious captain",        name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the grim captain",           name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the tough captain",          name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the stern captain",          name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the .* desert nomad",        name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the peacekeeper commander",  name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the .* mystic",              name = "oasis",      group = true,  respawn = 40 },
+    { pattern = "the Tang captain",           name = "bmarket",    group = true,  respawn = 40 },
+    { pattern = "the Fang captain",           name = "bmarket",    group = true,  respawn = 40 },
+    { pattern = "the Sung captain",           name = "bmarket",    group = true,  respawn = 40 },
+    { pattern = "the Hong captain",           name = "bmarket",    group = true,  respawn = 40 },
+    { pattern = "the McSweeney captain",      name = "bmarket",    group = true,  respawn = 40 },
+    { pattern = "the citadel guard",          name = "citguard",   group = false, respawn = 40 },
+}
+
+Config.visit_timers = {
+    { room_id = "AMShades",                                          name = "shades",    group = false, respawn = 20 },
+    { room_id = "ebff897af2b8bb6800a9a8636143099d0714be07",          name = "smugglers", group = false, respawn = 20 },
+    { room_id = "70546ec71867645ab5c51e9ce6087b75dcf4176f",          name = "offler",    group = false, respawn = 40 },
+    { room_id = "2950a174f65ef8e38eee444295c9b4832d36ab60",          name = "dragon",    group = false, respawn = 40 },
+    { room_id = "f6c60dd36ed38707eb954c3a670f2f9370a79399",          name = "bmarket",   group = true,  respawn = 40 },
+    { room_id = "e4646eab906aef1187a9dd3e980441b8f6b8d68c",          name = "bmarket",   group = true,  respawn = 40 },
+    { room_id = "0ae9d8c4f2b48f4fcc4cb57fd85443399be2ecc5",          name = "bmarket",   group = true,  respawn = 40 },
+    { room_id = "c7c6f5720d2c587f80696b6f0ec7f9ac0f084b06",          name = "bmarket",   group = true,  respawn = 40 },
+    { room_id = "3862c5fd0fe83f4080bdb9b94519bf8da89d5015",          name = "parades",   group = true,  respawn = 40 },
+    { room_id = "cca9645565f2bb0d017ea9b1dcc9d1b3e9fcfe72",          name = "cabbage",   group = false, respawn = 40 },
+    { room_id = "7377f4483763eca72e0b97a87f71c5266e33f2cd",          name = "cocoons",   group = false, respawn = 40 },
+}
+
+Config.xprate = {
+    good = 200000,
+    ok = 100000,
+    bad = 10000,
+}
+
+return Config

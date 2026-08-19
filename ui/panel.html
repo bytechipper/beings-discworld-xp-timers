@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Being's Discworld XP Timers</title>
+    <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+    <div class="panel">
+        <section class="section" id="xp-section">
+            <div class="section-header">XP Monitor</div>
+            <div class="xp-row">
+                <span class="xp-label">Window:</span>
+                <span class="xp-value" id="xp-window">0xp</span>
+                <span class="xp-rate" id="xp-window-rate"></span>
+            </div>
+            <div class="xp-row xp-sub">
+                <span class="xp-time" id="xp-window-time">0m</span>
+            </div>
+            <div class="xp-row">
+                <span class="xp-label">Session:</span>
+                <span class="xp-value" id="xp-session">0xp</span>
+                <span class="xp-rate" id="xp-session-rate"></span>
+            </div>
+            <div class="xp-row xp-sub">
+                <span class="xp-time" id="xp-session-time">0m</span>
+            </div>
+            <div class="button-row">
+                <button class="btn" id="btn-xpreset">XP Reset</button>
+                <button class="btn" id="btn-gsxp">GSXP</button>
+                <button class="btn" id="btn-gsxp-all">GSXP All</button>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">Death Timers</div>
+            <div id="kill-timers" class="timer-list"></div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">Visit Timers</div>
+            <div id="visit-timers" class="timer-list"></div>
+        </section>
+
+        <div class="button-row bottom-buttons">
+            <button class="btn" id="btn-gsdt">GSDT</button>
+            <button class="btn" id="btn-reset-all">Reset All</button>
+            <button class="btn" id="btn-save">Save</button>
+        </div>
+    </div>
+    <script src="panel.js"></script>
+</body>
+</html>
