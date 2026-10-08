@@ -1,3 +1,12 @@
+-- Mallard 0.27.0 loads sibling modules without caching. Share one instance
+-- per VM so panel callbacks, commands, and lifecycle handlers see the same state.
+local host_require = require
+local modules = {}
+require = function(name)
+    if modules[name] == nil then modules[name] = host_require(name) end
+    return modules[name]
+end
+
 local SpotTimers = require("spot_timers")
 local XpMonitor = require("xp_monitor")
 local Panel = require("panel")

@@ -52,6 +52,10 @@ function Panel.init()
         mud.note("[xp-timers] Timers saved to storage", { fg = "green" })
     end)
 
+    panel_handle:on_message("ready", function(_)
+        Panel.update()
+    end)
+
     update_timer = mud.every(1000, function()
         Panel.update()
     end)

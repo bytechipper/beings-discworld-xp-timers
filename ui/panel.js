@@ -82,3 +82,5 @@ document.getElementById("btn-reset-all").addEventListener("click", function () {
 document.getElementById("btn-save").addEventListener("click", function () {
     window.panel.post("dtsave", {});
 });
+
+window.panel.post("ready", {});

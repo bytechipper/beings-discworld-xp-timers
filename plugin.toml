@@ -1,10 +1,11 @@
 id = "net.discworld.beings-discworld-xp-timers"
 name = "Being's Discworld XP Timers"
-version = "1.0.2"
+description = "Track Discworld hotspot death and visit timers alongside XP gains and hourly rates."
+version = "1.0.3"
 language = "lua"
 entry = "src/main.lua"
 mallard_api_version = "1.0"
-minimum_app_version = "0.22.0"
+minimum_app_version = "0.27.0"
 authors = ["duzchip"]
 license = "MIT"
 

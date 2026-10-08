@@ -6,8 +6,8 @@ if not _G.bdxt_xp_state then
     _G.bdxt_xp_state = {
         window_xp = 0,
         session_xp = 0,
-        previous_xp = 0,
-        latest_xp = 0,
+        previous_xp = nil,
+        latest_xp = nil,
         gained_xp = 0,
         start_time = 0,
         session_start_time = 0,
@@ -23,12 +23,13 @@ function XpMonitor.init()
 end
 
 function XpMonitor.update(latest_xp)
-    if latest_xp == nil or latest_xp == 0 then return end
+    latest_xp = tonumber(latest_xp)
+    if latest_xp == nil then return end
 
     state.previous_xp = state.latest_xp
     state.latest_xp = latest_xp
 
-    if state.previous_xp ~= 0 then
+    if state.previous_xp ~= nil then
         local gain = state.latest_xp - state.previous_xp
         if gain > 0 then
             state.window_xp = state.window_xp + gain
@@ -44,8 +45,8 @@ end
 
 function XpMonitor.reset()
     state.window_xp = 0
-    state.previous_xp = 0
-    state.latest_xp = 0
+    state.previous_xp = nil
+    state.latest_xp = nil
     state.gained_xp = 0
     state.start_time = os.time()
 end
@@ -61,6 +62,7 @@ local function format_duration(secs)
 end
 
 local function calc_rate_colour(rate_k)
+    if settings.get("show_rate_colours") == false then return "neutral" end
     if rate_k >= Config.xprate.good / 1000 then
         return "good"
     elseif rate_k >= Config.xprate.ok / 1000 then

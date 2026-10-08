@@ -57,7 +57,8 @@ function SpotTimers.load()
     end
 end
 
-function SpotTimers.save()
+function SpotTimers.save(force)
+    if not force and settings.get("auto_save") == false then return end
     if not dirty then return end
     storage.set("kill_state", kill_state)
     storage.set("visit_state", visit_state)
@@ -66,7 +67,7 @@ end
 
 function SpotTimers.force_save()
     dirty = true
-    SpotTimers.save()
+    SpotTimers.save(true)
 end
 
 function SpotTimers.record_kill(npc_name)
